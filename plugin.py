@@ -70,3 +70,13 @@ class ZomboidPlugin(GamePlugin):
 
     async def message_player(self, send_command, name: str, message: str) -> str:
         return await send_command(f'servermsg "{name}" "{message}"')
+
+    async def get_player_roles(self) -> list[str]:
+        return ["moderator", "admin", "none"]
+
+    async def promote_player(self, send_command, player: str, role: str) -> str:
+        return await send_command(f'setaccesslevel "{player}" "{role}"')
+
+    async def demote_player(self, send_command, player: str) -> str:
+        return await send_command(f'setaccesslevel "{player}" "none"')
+
